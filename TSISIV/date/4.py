@@ -1,15 +1,15 @@
 import datetime
 
-# get the first date from the user
-date1_str = input("Enter the first date (YYYY-MM-DD HH:MM:SS): ")
-date1 = datetime.datetime.strptime(date1_str, '%Y-%m-%d %H:%M:%S')
+# get input dates from user
+date_str1 = input("Enter the first date in YYYY-MM-DD HH:MM:SS format: ")
+date_str2 = input("Enter the second date in YYYY-MM-DD HH:MM:SS format: ")
 
-# get the second date from the user
-date2_str = input("Enter the second date (YYYY-MM-DD HH:MM:SS): ")
-date2 = datetime.datetime.strptime(date2_str, '%Y-%m-%d %H:%M:%S')
+# convert input strings to datetime objects
+date1 = datetime.datetime.strptime(date_str1, '%Y-%m-%d %H:%M:%S')
+date2 = datetime.datetime.strptime(date_str2, '%Y-%m-%d %H:%M:%S')
 
-# calculate the difference between the dates in seconds
-difference_in_seconds = (date2 - date1).total_seconds()
+# calculate the difference in seconds
+diff_seconds = (date2 - date1).total_seconds()
 
-# print the result
-print("Difference between the two dates in seconds:", difference_in_seconds)
+# display the result
+print("The difference between the two dates is {} seconds.".format(diff_seconds))
