@@ -18,9 +18,9 @@ for interface in interfaces:
 
 # Print the table header
 print('Interface Status')
-print('=' * 80)
+print('=' * 90)
 print('{:<50} {:<25} {:<8} {:<6}'.format('DN', 'Description', 'Speed', 'MTU'))
-print('-' * 80)
+print('-' * 90)
 
 # Print the table rows
 for row in table_data:
