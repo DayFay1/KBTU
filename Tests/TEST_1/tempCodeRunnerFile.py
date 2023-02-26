@@ -8,4 +8,3 @@ for i in range(1,height):
         print(  int((height-1)) * ' ' + character) 
     else:
         print(  int((height-i))*' ' + ('/') + (((i-1)*2)-1)*' ' + ('\ '))
-    
