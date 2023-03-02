@@ -19,4 +19,4 @@ snake_case_contents = re.sub(r'([a-z]+[A-Z]+[a-zA-Z]*)', lambda x: camel_to_snak
 
 # Write the new contents to the output file
 with open("snake.txt", "w", encoding="utf-8") as f:
-    f.write(snake_case_contents)
+    f.write(snake_case_contents) 
