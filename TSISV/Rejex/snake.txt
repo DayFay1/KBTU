@@ -1,0 +1,4 @@
+hello_world_how_are_you
+i_use_snake_language
+avada_kedavra_harry
+this_is_camel_case

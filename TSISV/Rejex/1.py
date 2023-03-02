@@ -1,8 +1,10 @@
 import re
 
-with open('row.txt', 'r') as f:
-    string = f.read()
+# Read in the contents of the file "row.txt" as a string
+with open("row.txt", "r",encoding= 'UTF-8') as f:
+    contents = f.read()
 
-pattern = r'ab*'
-matches = re.findall(pattern, string)
-print(matches)
+# Exercise 1: Match string with 'a' followed by zero or more 'b's
+regex1 = re.compile(r".*a.*b*")
+match1 = regex1.findall(contents)
+print(match1)

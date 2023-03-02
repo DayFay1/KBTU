@@ -1,0 +1,4 @@
+helloWorldHowAreYou
+iUseSnakeLanguage
+avadaKedavraHarry
+thisIsCamelCase

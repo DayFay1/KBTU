@@ -1,0 +1,14 @@
+
+aabababababab
+abacos
+ab
+ab
+acb
+acbb
+This:skin:care:designed:for:beatifull:babies
+This:is:a:test:string:with:acbb::acb::abbb::abbbbbb::and:aabbbbbb::Also::there:is:no:ab:in:this:string:
+this_is_a_sample_text_with_multiple_words_joined_by_underscores
+bbb
+a___bbb
+This:is:a:Sample:Text:with:Multiple:Words:Containing:sequences:of:Uppercase:and:Lowercase:letters
+aadwadawdb
