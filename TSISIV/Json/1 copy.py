@@ -9,7 +9,7 @@ interfaces = data['imdata']
 table_data = []
 for interface in interfaces:
     dn = interface['l1PhysIf']['attributes']['dn']
-    descr = interface['fvCEp']['attributes']['descr']
+    descr = interface['l1PhysIf']['attributes']['descr']
     speed = interface['l1PhysIf']['attributes'].get('speed', 'inherit')
     mtu = interface['l1PhysIf']['attributes'].get('mtu', '')
 
