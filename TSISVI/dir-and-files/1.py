@@ -1,7 +1,7 @@
 import os
 
 # Specified path
-path = "/path/to/directory"
+path = "E:\Программы\GIt_P\KBTU"
 
 # Get list of directories present in the specified path
 dirs = [d for d in os.listdir(path) if os.path.isdir(os.path.join(path, d))]
