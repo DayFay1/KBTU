@@ -1,48 +1,68 @@
 import pygame
-import datetime
 
 pygame.init()
+screen = pygame.display.set_mode((800, 800))
+clock = pygame.time.Clock()
 
-# Load the image of Mickey Mouse with his hands at 12 o'clock position
-clock_face = pygame.image.load("mickey_clock.png")
-clock_face_rect = clock_face.get_rect()
+def blitRotate(surf, image, pos, originPos, angle):
 
-# Load the images of Mickey's hands
-seconds_hand = pygame.image.load("mickey_seconds.png")
-seconds_hand_rect = seconds_hand.get_rect(center=clock_face_rect.center)
-minutes_hand = pygame.image.load("mickey_minutes.png")
-minutes_hand_rect = minutes_hand.get_rect(center=clock_face_rect.center)
+    # offset from pivot to center
+    image_rect = image.get_rect(topleft = (pos[0] - originPos[0], pos[1]-originPos[1]))
+    offset_center_to_pivot = pygame.math.Vector2(pos) - image_rect.center
+    
+    # roatated offset from pivot to center
+    rotated_offset = offset_center_to_pivot.rotate(-angle)
 
-# Define a function to rotate Mickey's hands according to the current time
-def update_hands():
-    current_time = datetime.datetime.now()
-    seconds_angle = current_time.second * 6  # 6 degrees per second
-    minutes_angle = current_time.minute * 6 + current_time.second / 10  # 6 degrees per minute, 1 degree per 10 seconds
-    seconds_hand_rotated = pygame.transform.rotate(seconds_hand, seconds_angle)
-    minutes_hand_rotated = pygame.transform.rotate(minutes_hand, minutes_angle)
-    return seconds_hand_rotated, minutes_hand_rotated
+    # roatetd image center
+    rotated_image_center = (pos[0] - rotated_offset.x, pos[1] - rotated_offset.y)
 
-# Set up the Pygame display window
-screen = pygame.display.set_mode((800, 600))
-pygame.display.set_caption("Mickey Clock")
+    # get a rotated image
+    rotated_image = pygame.transform.rotate(image, angle)
+    rotated_image_rect = rotated_image.get_rect(center = rotated_image_center)
 
-# Main program loop
-while True:
+    # rotate and blit the image
+    surf.blit(rotated_image, rotated_image_rect)
+  
+    # draw rectangle around the image
+    pygame.draw.rect(surf, (255, 0, 0), (*rotated_image_rect.topleft, *rotated_image.get_size()),2)
+
+def blitRotate2(surf, image, topleft, angle):
+
+    rotated_image = pygame.transform.rotate(image, angle)
+    new_rect = rotated_image.get_rect(center = image.get_rect(topleft = topleft).center)
+
+    surf.blit(rotated_image, new_rect.topleft)
+    pygame.draw.rect(surf, (255, 0, 0), new_rect, 2)
+
+try:
+    image = pygame.image.load('mickey_clock.jpeg')
+except:
+    text = pygame.font.SysFont('Times New Roman', 50).render('image', False, (255, 255, 0))
+    image = pygame.Surface((text.get_width()+1, text.get_height()+1))
+    pygame.draw.rect(image, (0, 0, 255), (1, 1, *text.get_size()))
+    image.blit(text, (1, 1))
+w, h = image.get_size()
+
+angle = 0
+done = False
+while not done:
+    clock.tick(60)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit()
-            quit()
+            done = True
 
-    # Get the current time and rotate Mickey's hands accordingly
-    seconds_hand_rotated, minutes_hand_rotated = update_hands()
+    pos = (screen.get_width()/2, screen.get_height()/2)
+    
+    screen.fill(0)
+    blitRotate(screen, image, pos, (w/2, h/2), angle)
+    #blitRotate2(screen, image, pos, angle)
+    angle += 1
+    
+    pygame.draw.line(screen, (0, 255, 0), (pos[0]-20, pos[1]), (pos[0]+20, pos[1]), 3)
+    pygame.draw.line(screen, (0, 255, 0), (pos[0], pos[1]-20), (pos[0], pos[1]+20), 3)
+    pygame.draw.circle(screen, (0, 255, 0), pos, 7, 0)
 
-    # Blit the clock face and hands onto the screen
-    screen.blit(clock_face, clock_face_rect)
-    screen.blit(seconds_hand_rotated, seconds_hand_rect)
-    screen.blit(minutes_hand_rotated, minutes_hand_rect)
-
-    # Update the screen
-    pygame.display.update()
-
-    # Wait for one second
-    pygame.time.wait(1000)
+    pygame.display.flip()
+    
+pygame.quit()
+exit()
