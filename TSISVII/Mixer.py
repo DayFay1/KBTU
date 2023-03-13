@@ -14,10 +14,10 @@ current_song = 0
 pygame.mixer.music.load(songs[current_song])
 
 # Define the keyboard controls
-keyboard.add_hotkey('ctrl+shift+p', pygame.mixer.music.play)
-keyboard.add_hotkey('ctrl+shift+s', pygame.mixer.music.stop)
-keyboard.add_hotkey('ctrl+shift+n', lambda: next_song(songs))
-keyboard.add_hotkey('ctrl+shift+b', lambda: prev_song(songs))
+keyboard.add_hotkey('1', pygame.mixer.music.play)
+keyboard.add_hotkey('2', pygame.mixer.music.stop)
+keyboard.add_hotkey('3', lambda: next_song(songs))
+keyboard.add_hotkey('4', lambda: prev_song(songs))
 
 # Define the function to play the next song
 def next_song(songs):

@@ -1,22 +1,19 @@
-class ParentA:
-    def __init__(self, a):
-        self.a = a
+import random
 
-    def print_a(self):
-        print(f'a = {self.a}')
+N = 3
 
-class ParentB:
-    def __init__(self, b):
-        self.b = b
+def play_game():
+    faces = [random.randint(1, N) for i in range(N)]
+    points = 0
+    for i in range(1, N+1):
+        count = faces.count(i)
+        if count > 1:
+            points += count * i
+            points -= count * count
+    return points
 
-    def print_b(self):
-        print(f'b = {self.b}')
+num_trials = 100000
+total_points = sum([play_game() for i in range(num_trials)])
+expected_points = total_points / num_trials
 
-class Child(ParentA, ParentB):
-    def __init__(self, a, b, c):
-        super().__init__(a)  # Calls ParentA's __init__()
-        super().__init__(b)  # Calls ParentB's __init__()
-        self.c = c
-
-    def print_c(self):
-        print(f'c = {self.c}')
+print(round(expected_points, 2))
